@@ -6,7 +6,6 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import Cookies from "universal-cookie";
 import { post } from "../lib/http-functions/post";
-import { Redirect } from "react-router-dom";
 
 const cookies = new Cookies();
 const loginUrl = "https://project-week-app.herokuapp.com/login";
@@ -52,7 +51,7 @@ export const ContextProvider = ({ children }) => {
    }
 
    if (!_user) {
-      return <Redirect to="/" />;
+      console.log("hello");
    }
 
    return (
