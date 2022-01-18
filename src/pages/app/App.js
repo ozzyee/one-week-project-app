@@ -1,14 +1,15 @@
-import './App.css';
+
+import logo from "./logo.svg";
+import "./App.css";
+import { useAuthContent } from "../../auth/auth.context";
+import { Router } from "../../routes/routes";
 import Signup from '../../Components/signup/Signup';
 import Button from '../../Components/button/Button';
-import React from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <Signup/>
-    </div>
-  );
+   const { signIn } = useAuthContent();
+   signIn();
+   return <Router />;
 }
 
 export default App;

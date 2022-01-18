@@ -1,7 +1,8 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { post } from "../../lib/http-functions/post";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export async function _signUp() {
    const email = "123@12111.com";
@@ -12,11 +13,7 @@ export async function _signUp() {
 
       firebase.auth().onIdTokenChanged(async (user) => {
          const token = await user?.getIdToken();
-         await post("/api/signin", { token });
-
-         console.log("this is the token", token);
-
-         //  window.location.href = "/";
+         cookies.set("token", token, { path: "/" });
       });
    } catch (error) {
       console.log(error);
