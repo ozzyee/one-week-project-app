@@ -18,9 +18,10 @@ function Dropdown() {
       <div className="dropdown">
          <button onClick={toggleMenu} className="dropbtn"></button>
          <div id="myDropdown" className="dropdown-content">
-            <a>Home</a>
+             {/* NOTE WONT BUILD IF HREF ARE WRONG */}
+            {/* <a>Home</a>
             <a>Dashboard</a>
-            <a>Completed forms</a>
+            <a>Completed forms</a> */}
          </div>
       </div>
    );
