@@ -1,10 +1,8 @@
-import React from 'react';
-import Credentials from '../Components/Credentials/Credentials.js';
+import React from "react";
+import Credentials from "../Components/Credentials/Credentials.js";
 
 function Details() {
-    return (
-      <Credentials />
-    )
+   return <Credentials />;
 }
 
-export default Details
+export default Details;

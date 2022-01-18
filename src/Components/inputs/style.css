@@ -1,0 +1,19 @@
+.inputs {
+   width: 100%;
+
+   border-radius: 22px;
+   padding: 4px;
+   text-align: center;
+
+   cursor: pointer;
+   color: #4b90e3;
+   font-weight: 600;
+   margin: 20px 0;
+   height: 35px;
+   font-size: 1.1rem;
+}
+
+.inputs::placeholder {
+   color: #4b90e3;
+   font-weight: 600;
+}
