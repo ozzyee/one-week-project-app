@@ -10,9 +10,9 @@ import CompletedFormsPage from '../pages/completedforms.js'
 export const Router = () => {
    return (
       <Routes>
+         <Route path="/" element={<Signin />} />
          <Route path="signup" element={<Signup />} />
          <Route path="dashboard" element={<Dashboard />} />
-         <Route path="signin" element={<Signin />} />
          <Route path="details" element={<Details />} />
          <Route path="completedforms" element={<CompletedFormsPage />} />
       </Routes>
