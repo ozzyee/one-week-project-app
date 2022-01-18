@@ -14,7 +14,7 @@ export const useAuthContent = () => useContext(ContentContext);
 
 export const ContextProvider = ({ children }) => {
    firebase.initializeApp(firebaseConfig);
-   const [_user, setUser] = useState({});
+   // const [_user, setUser] = useState({});
 
    const signIn = async () => {
       const email = "123@12111.com";
