@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../button/Button';
 
-function Signup () {
+function SignUp () {
 
     const handleSignUp = () => {
         console.log('It works!');
@@ -15,10 +15,11 @@ function Signup () {
             <input placeholder='Please enter your email'></input>
             <input placeholder='Please enter your password'></input>
             <input placeholder='Please confirm your password'></input>
-            <Button handleSignUp={handleSignUp}  text="Sign Up Now"/>
+            <Button handleClick={handleSignUp}  text="Sign Up Now"/>
+            <img src="https://www.schoolofcode.co.uk/static/planet_soc-936d90fa66f241adff76225618c37d0f.png" alt="School of Code Chris Planet"></img>
             </div>
     )
 }
 
-export default Signup
+export default SignUp;
 
