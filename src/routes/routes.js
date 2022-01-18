@@ -3,8 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Signup from "../pages/signup";
 import Dashboard from "../pages/dashboard";
 import Signin from "../pages/signin";
-import Credentials from "../pages/credentials";
 import Details from "../pages/credentials";
+import CompletedFormsPage from '../pages/completedforms.js'
+
 
 export const Router = () => {
    return (
@@ -13,6 +14,7 @@ export const Router = () => {
          <Route path="dashboard" element={<Dashboard />} />
          <Route path="signin" element={<Signin />} />
          <Route path="details" element={<Details />} />
+         <Route path="completedforms" element={<CompletedFormsPage />} />
       </Routes>
    );
 };

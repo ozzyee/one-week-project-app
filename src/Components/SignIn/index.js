@@ -15,6 +15,7 @@ function SignIn() {
             <input placeholder='Email' />
             <input placeholder='Password' />
             <Button handleClick={handleSignIn} text='Sign in' />
+            <img src="https://www.schoolofcode.co.uk/static/planet_soc-936d90fa66f241adff76225618c37d0f.png" alt="School of Code Chris Planet"></img>
         </div>
     )
 }
