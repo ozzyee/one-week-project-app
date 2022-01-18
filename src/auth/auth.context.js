@@ -51,8 +51,8 @@ export const ContextProvider = ({ children }) => {
       }
    }
 
-   if (_user !== null) {
-      console.log("yes mate");
+   if (!_user) {
+      return <Redirect to="/" />;
    }
 
    return (
