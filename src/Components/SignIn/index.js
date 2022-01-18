@@ -2,8 +2,8 @@ import React from "react";
 import Button from "../button/Button.js";
 import Inputs from "../inputs/inputs";
 import Text from "../text/text";
-import "./style.css";
-
+// Note: css is in index.css as reusing these styles keeping it dry :)
+ 
 function SignIn() {
    function handleSignIn() {
       console.log("You are signed in");
