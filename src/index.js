@@ -1,3 +1,4 @@
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -5,6 +6,7 @@ import App from "../src/pages/app/App";
 import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "../src/auth/auth.context";
 import { BrowserRouter } from "react-router-dom";
+
 
 ReactDOM.render(
    <React.StrictMode>
