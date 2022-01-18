@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react";
 import { firebaseConfig } from "../lib/firebase/firebase.config";
-import { _signUp } from "./functions/signup";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
