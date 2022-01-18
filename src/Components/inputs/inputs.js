@@ -9,6 +9,7 @@ function Inputs({ onChange, placeholder, type }) {
          type={type}
          onChange={onChange}
          className="inputs"
+         autoComplete={true}
       />
    );
 }

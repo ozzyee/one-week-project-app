@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../button/Button";
 import Inputs from "../inputs/inputs";
 import Text from "../text/text";
+import { useAuthContent } from "../../auth/auth.context";
+
 // Note: css is in index.css as reusing these styles keeping it dry :)
 
 function SignUp() {
+   const [email, setEmail] = useState();
+   const [password, setPassword] = useState();
+   const { signUp } = useAuthContent();
+
    const handleSignUp = () => {
-      console.log("It works!");
+      signUp({ email, password });
    };
 
    return (
@@ -33,9 +39,17 @@ function SignUp() {
 
                {/* Form */}
                <div className="input-wrapper" id="inputs">
-                  <Inputs placeholder="Email" />
-                  <Inputs placeholder="Password" />
-                  <Inputs placeholder="Confirm Password" />
+                  <Inputs
+                     placeholder="Email"
+                     type="email"
+                     onChange={(evt) => setEmail(evt.target.value)}
+                  />
+                  <Inputs
+                     placeholder="Password"
+                     type="password"
+                     onChange={(evt) => setPassword(evt.target.value)}
+                  />
+                  <Inputs placeholder="Confirm Password" type="password" />
                   <Button handleClick={handleSignUp} text="Sign in" />
                </div>
             </div>
