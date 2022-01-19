@@ -5,6 +5,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import Cookies from "universal-cookie";
 import { post } from "../lib/http-functions/post";
+import { errorMessage } from "./err-msg";
 
 const cookies = new Cookies();
 const loginUrl = "https://project-week-app.herokuapp.com/login";
@@ -17,6 +18,7 @@ export const ContextProvider = ({ children }) => {
    const [_user, setUser] = useState(null);
    const [hasError, setHasError] = useState(false);
    const [errorMsg, setErrorMsg] = useState("");
+   const [fbErr, setFbErr] = useState("");
 
    const setHasErr = (_hasError) => {
       setHasError(_hasError);
@@ -38,8 +40,8 @@ export const ContextProvider = ({ children }) => {
 
          // dashboard
       } catch (error) {
-         setHasError(true);
-         setErrorMsg(error.message);
+         const err = errorMessage(error);
+         setFbErr(err);
       }
    };
 
@@ -55,10 +57,16 @@ export const ContextProvider = ({ children }) => {
             setUser(data.userData);
          });
       } catch (error) {
-         setHasError(true);
-         setErrorMsg(error.message);
+         const err = error.message.split("");
+         console.log("-> =>", err);
+         // setHasError(true);
+         // setErrorMsg(error.message);
       }
    }
+
+   const _setErrorMsg = (_err) => {
+      setErrorMsg(_err);
+   };
 
    if (!_user) {
       console.log("hello");
@@ -66,7 +74,15 @@ export const ContextProvider = ({ children }) => {
 
    return (
       <ContentContext.Provider
-         value={{ signIn, signUp, hasError, setHasErr, errorMsg }}
+         value={{
+            signIn,
+            signUp,
+            hasError,
+            setHasErr,
+            errorMsg,
+            _setErrorMsg,
+            fbErr,
+         }}
       >
          {children}
       </ContentContext.Provider>

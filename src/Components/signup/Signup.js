@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import Button from "../button/Button";
 import Inputs from "../inputs/inputs";
 import Text from "../text/text";
 import { useAuthContent } from "../../auth/auth.context";
-
 // Note: css is in index.css as reusing these styles keeping it dry :)
 
 function SignUp() {
    const [email, setEmail] = useState();
    const [password, setPassword] = useState();
-   const { signUp } = useAuthContent();
+   const [confirmPassword, setConfirmPassword] = useState("");
+   const { signUp, setHasErr, _setErrorMsg, hasError, fbErr } =
+      useAuthContent();
 
    const handleSignUp = () => {
       signUp({ email, password });
@@ -19,7 +20,7 @@ function SignUp() {
       <div id="fixed-screen">
          {/* Background */}
          <div className="bg-img-wrapper">
-            <img src="/space-4984262.jpg" className="bg-img" alt="bg"/>
+            <img src="/space-4984262.jpg" className="bg-img" alt="bg" />
             <div className="overlay" />
          </div>
          <section id="login">
@@ -49,7 +50,11 @@ function SignUp() {
                      type="password"
                      onChange={(evt) => setPassword(evt.target.value)}
                   />
-                  <Inputs placeholder="Confirm Password" type="password" />
+                  <Inputs
+                     placeholder="Confirm Password"
+                     type="password"
+                     onChange={(evt) => setConfirmPassword(evt.target.value)}
+                  />
                   <Button handleClick={handleSignUp} text="Sign in" />
                </div>
             </div>

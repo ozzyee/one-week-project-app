@@ -11,8 +11,8 @@ export default function CustomizedSnackbars() {
    const { hasError, setHasErr, errorMsg } = useAuthContent();
    const [open, setOpen] = useState(false);
    const [state] = useState({
-      vertical: "top",
-      horizontal: "right",
+      vertical: "bottom",
+      horizontal: "left",
    });
    const { vertical, horizontal } = state;
 
