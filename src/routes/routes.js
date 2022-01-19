@@ -4,7 +4,7 @@ import Signup from "../pages/signup";
 import Dashboard from "../pages/dashboard";
 import Signin from "../pages/signin";
 import Details from "../pages/credentials";
-import CompletedFormsPage from '../pages/completedforms.js'
+import FormPage from '../pages/formPage.js';
 
 
 export const Router = () => {
@@ -14,7 +14,7 @@ export const Router = () => {
          <Route path="signup" element={<Signup />} />
          <Route path="dashboard" element={<Dashboard />} />
          <Route path="details" element={<Details />} />
-         <Route path="completedforms" element={<CompletedFormsPage />} />
+         <Route path="formpage" element={<FormPage />} />
       </Routes>
    );
 };

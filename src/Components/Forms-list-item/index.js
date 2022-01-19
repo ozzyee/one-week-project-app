@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-function FormListItem({date}) {
+function FormListItem({item}) {
     return (
         <div>
-            <li><p>Content Feedback</p><p>{date}</p></li>
-            
+            <li>
+                <p>{item.formtitle}</p>
+                <p>{item.date}</p>
+            </li>
         </div>
     )
 }
