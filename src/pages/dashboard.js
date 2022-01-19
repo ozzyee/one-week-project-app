@@ -1,4 +1,5 @@
 import FormList from "../Components/FormList/index.js";
+import '../Style/dashboard.css'
 
 
 function Dashboard() {
