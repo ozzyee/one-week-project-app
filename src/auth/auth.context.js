@@ -33,6 +33,7 @@ export const ContextProvider = ({ children }) => {
             const data = await post(loginUrl, {
                uid: token,
             });
+            setUser(data.userData);
          });
 
          // dashboard
