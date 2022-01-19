@@ -57,10 +57,8 @@ export const ContextProvider = ({ children }) => {
             setUser(data.userData);
          });
       } catch (error) {
-         const err = error.message.split("");
-         console.log("-> =>", err);
-         // setHasError(true);
-         // setErrorMsg(error.message);
+         const err = errorMessage(error);
+         setFbErr(err);
       }
    }
 
