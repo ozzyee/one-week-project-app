@@ -1,6 +1,4 @@
 import { useEffect, useState, forwardRef } from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useAuthContent } from "../../auth/auth.context";
@@ -12,7 +10,7 @@ const Alert = forwardRef(function Alert(props, ref) {
 export default function CustomizedSnackbars({}) {
    const { hasError, setHasErr, errorMsg } = useAuthContent();
    const [open, setOpen] = useState(false);
-   const [state, setState] = useState({
+   const [state] = useState({
       vertical: "top",
       horizontal: "right",
    });
@@ -28,7 +26,7 @@ export default function CustomizedSnackbars({}) {
    };
 
    return (
-      <>
+      <div>
          <Snackbar
             open={open}
             onClose={handleClose}
@@ -43,6 +41,6 @@ export default function CustomizedSnackbars({}) {
                {errorMsg}
             </Alert>
          </Snackbar>
-      </>
+      </div>
    );
 }

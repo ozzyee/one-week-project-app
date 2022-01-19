@@ -1,4 +1,4 @@
-import SignIn from "../Components/SignIn/index.js";
+import SignIn from "../Components/SignIn/signin";
 
 function Signin(){
     return <SignIn />
