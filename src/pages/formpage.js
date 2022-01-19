@@ -1,23 +1,24 @@
 import React from "react";
 import SliderRange from "../Components/Slider-range/index.js";
+import '../Style/formpage.css';
 
 function FormPage(){
     return (
         <div className="form-page-wrapper">
             <div className="rate-experience">
-                <p>Inadequate</p>
+                <p className="range-text">Inadequate</p>
                 <SliderRange max='5' min='0' />
-                <p>Excellent</p>
+                <p className="range-text">Excellent</p>
             </div>
             <div className="guest-speaker-experience">
-                <p>Inadequate</p>
+                <p className="range-text">Inadequate</p>
                 <SliderRange max='5' min='0' />
-                <p>Excellent</p>
+                <p className="range-text">Excellent</p>
             </div>
             <div className="rate-emotionally-feeling">
-                <p>😢</p>
+                <p className="range-text">😢</p>
                 <SliderRange max='5' min='0' />
-                <p>😁</p>
+                <p className="range-text">😁</p>
             </div>
         </div>
     )

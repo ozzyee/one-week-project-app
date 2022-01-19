@@ -1,0 +1,35 @@
+.form-page-wrapper{
+    padding: 2em;
+}
+
+.rate-experience{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+}
+
+.guest-speaker-experience{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+}
+
+.rate-emotionally-feeling{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: 13px;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+}
+
+.range-text{
+    margin: auto;
+}
+
+.happy-face{
+    margin: auto;
+}
