@@ -15,6 +15,12 @@ export const useAuthContent = () => useContext(ContentContext);
 export const ContextProvider = ({ children }) => {
    firebase.initializeApp(firebaseConfig);
    const [_user, setUser] = useState(null);
+   const [hasError, setHasError] = useState(false);
+   const [errorMsg, setErrorMsg] = useState("");
+
+   const setHasErr = (_hasError) => {
+      setHasError(_hasError);
+   };
 
    const signIn = async ({ email, password }) => {
       // const email = "123@12111.com";
@@ -24,18 +30,21 @@ export const ContextProvider = ({ children }) => {
          firebase.auth().onIdTokenChanged(async (user) => {
             const token = await user?.getIdToken();
             cookies.set("token", token, { path: "/" });
+            const data = await post(loginUrl, {
+               uid: token,
+            });
          });
 
          // dashboard
       } catch (error) {
-         console.log(error);
+         setHasError(true);
+         setErrorMsg(error.message);
       }
    };
 
    async function signUp({ email, password }) {
       try {
          await firebase.auth().createUserWithEmailAndPassword(email, password);
-
          firebase.auth().onIdTokenChanged(async (user) => {
             const token = await user?.getIdToken();
             cookies.set("token", token, { path: "/" });
@@ -45,7 +54,8 @@ export const ContextProvider = ({ children }) => {
             setUser(data.userData);
          });
       } catch (error) {
-         console.log(error);
+         setHasError(true);
+         setErrorMsg(error.message);
       }
    }
 
@@ -54,7 +64,9 @@ export const ContextProvider = ({ children }) => {
    }
 
    return (
-      <ContentContext.Provider value={{ signIn, signUp }}>
+      <ContentContext.Provider
+         value={{ signIn, signUp, hasError, setHasErr, errorMsg }}
+      >
          {children}
       </ContentContext.Provider>
    );
