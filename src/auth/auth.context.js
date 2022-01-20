@@ -108,12 +108,14 @@ export const ContextProvider = ({ children }) => {
       const USER_DATA = user[0];
       console.log("=> > =>");
       console.log("=> > =>", USER_DATA.bootcmperid);
+      const currentUrl = window.location.href.split("/")[3];
+      const idUrl = window.location.href.split("/")[4];
+
+      console.log(idUrl.length);
 
       if (user.length === 0) {
          history("/details");
          console.log("NO DATA");
-      } else {
-         history("/dashboard");
       }
    };
 
@@ -127,7 +129,7 @@ export const ContextProvider = ({ children }) => {
       }
    }, [_cookie, _user]);
 
-   if (loading) return null;
+   if (loading) return <h1>loading... all</h1>;
 
    return (
       <ContentContext.Provider

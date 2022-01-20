@@ -1,14 +1,12 @@
-
 import React from "react";
 import ReactDOM from "react-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "../src/pages/app/App";
 import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "../src/auth/auth.context";
 import { BrowserRouter } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css'
-
+import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 
 ReactDOM.render(
    <React.StrictMode>
