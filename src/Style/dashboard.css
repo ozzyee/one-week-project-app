@@ -36,7 +36,7 @@
   background-color: white;
   list-style: none;
   margin: 0;
-  padding: 0 1em;
+  padding: 0.8em 1em;
   text-indent: 0;
   color: #4a90e2;
   font-family: "Roboto", sans-serif;
@@ -73,6 +73,7 @@
 .form-item-date {
   color: black;
   font-size: 0.8em;
+  margin: 0;
 }
 
 .form-title {
