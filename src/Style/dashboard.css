@@ -38,7 +38,7 @@
    margin: 0;
    padding: 0 1em;
    text-indent: 0;
-   color: #4a90e2;
+   color: #4a90e2 !important;
    font-family: "Roboto", sans-serif;
    font-weight: 700;
    align-items: center;

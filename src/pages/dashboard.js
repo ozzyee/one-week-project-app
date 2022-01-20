@@ -6,8 +6,31 @@ import "../Style/dashboard.css";
 import Notification from "../Components/Notification/Notification.js";
 import { useAuthContent } from "../auth/auth.context";
 import { getData } from "../lib/http-functions/get";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+   "";
+   const [forms, setForms] = useState([]);
+   const { _user } = useAuthContent();
+   const [user, setUser] = useState("");
+   const history = useNavigate();
+
+   console.log("this is the uid => =>", forms);
+
+   useEffect(() => {
+      (async () => {
+         const data = await getData(
+            `https://project-week-app.herokuapp.com/forms/${_user.uid}`
+         );
+
+         const user = await getData(
+            `https://project-week-app.herokuapp.com/users/${_user.uid}`
+         );
+         setUser(user[0]);
+         setForms(data);
+      })();
+   }, []);
+
    const mockForms = [
       {
          key: 1,
@@ -42,32 +65,14 @@ function Dashboard() {
          url: "www.bbc.com",
       },
    ];
-   const [loading] = useState(true);
-   const completedMockForms = mockForms.filter(function (item) {
+
+   const completedMockForms = forms?.filter(function (item) {
       return item.iscompleted === true;
    });
 
-   const unCompletedMockForms = mockForms.filter(function (item) {
+   const unCompletedMockForms = forms?.filter(function (item) {
       return item.iscompleted === false;
    });
-
-   const { _user } = useAuthContent();
-
-   const checkData = async () => {
-      const user = await getData(
-         `https://project-week-app.herokuapp.com/users/${_user.uid}`
-      );
-      console.log("this is user", user);
-      if (user.length === 0) {
-         // history("/details");
-      } else {
-         // history("/dashboard");
-      }
-   };
-
-   useEffect(() => {
-      checkData();
-   }, [loading]);
 
    let todos = unCompletedMockForms.length;
 
@@ -82,13 +87,20 @@ function Dashboard() {
                />
                <Notification todos={todos} />
             </div>
-            <h1 className="dashboard-h1">Welcome LuScOz</h1>
+            <h1 className="dashboard-h1">Welcome {user.displayname}</h1>
          </div>
 
          <div className="dashboard-container">
             <div className="dashboard-header"></div>
             <h2 className="dashboard-h2">Forms To-Do</h2>
-            <FormList forms={unCompletedMockForms} />
+            <FormList
+               forms={unCompletedMockForms}
+               onClick={(evt) => {
+                  const target = evt.target.parentElement.parentElement.id;
+                  console.log(target);
+                  history(`/form/${target}`);
+               }}
+            />
             <h2 className="dashboard-h2">Completed Forms</h2>
             <FormList forms={completedMockForms} />
          </div>

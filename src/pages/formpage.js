@@ -1,14 +1,22 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react/style-prop-object */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import SliderRange from "../Components/Slider-range/index.js";
 import "../Style/formpage.css";
+import Snackbar from "@mui/material/Snackbar";
+import { useAuthContent } from "../auth/auth.context";
+import MuiAlert from "@mui/material/Alert";
+import { patch } from "../lib/http-functions/patch";
+import { useNavigate } from "react-router-dom";
 
 function FormPage() {
    const [experience, setExperience] = useState(3);
    const [speaker, setSpeaker] = useState(3);
    const [feeling, setFeeling] = useState(3);
+   const [open, setOpen] = useState(false);
+   const history = useNavigate();
+   const { _user } = useAuthContent();
 
    useEffect(() => {
       if (experience == 0) document.getElementById("ex-0").click();
@@ -33,8 +41,50 @@ function FormPage() {
       if (feeling == 5) document.getElementById("fl-5").click();
    }, [experience, speaker, feeling]);
 
+   const [state] = useState({
+      vertical: "bottom",
+      horizontal: "left",
+   });
+   const { vertical, horizontal } = state;
+
+   const Alert = forwardRef(function Alert(props, ref) {
+      return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+   });
+
+   const currentUrl = window.location.href.split("/")[4];
+   const uid = _user.uid;
+
+   const sendForm = async () => {
+      setOpen(true);
+      setTimeout(function () {
+         history("/");
+      }, 1000);
+      const res = await patch(
+         `https://project-week-app.herokuapp.com/forms/${currentUrl}/${uid}`
+      );
+      console.log(res);
+   };
+
+   const handleClose = (event, reason) => {
+      setOpen(false);
+   };
+
    return (
       <>
+         <Snackbar
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{ vertical, horizontal }}
+            key={vertical + horizontal}
+         >
+            <Alert
+               onClose={handleClose}
+               severity="success"
+               sx={{ width: "100%" }}
+            >
+               Your form was sent successfully
+            </Alert>
+         </Snackbar>
          <iframe title="fake" name="dummyframe" id="dummyframe"></iframe>
          <div className="form-page-wrapper">
             <form
@@ -286,7 +336,7 @@ function FormPage() {
                   </h6>
                   <textarea placeholder="Your answer" name="entry.651497452" />
                </div>
-               <input type="submit" />
+               <input type="submit" onClick={sendForm} />
             </form>
          </div>
       </>

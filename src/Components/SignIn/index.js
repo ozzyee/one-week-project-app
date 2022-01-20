@@ -90,6 +90,13 @@ function SignIn() {
 
    return (
       <div id="fixed-screen">
+         <button
+            onClick={() => history("/signup")}
+            id="sign-up"
+            className="hover"
+         >
+            Sign up
+         </button>
          {/* Background */}
          <div className="bg-img-wrapper">
             <img src="/space-4984262.jpg" className="bg-img" alt="bg" />
@@ -126,7 +133,7 @@ function SignIn() {
                   />
                   <Button handleClick={handleSignIn} text="Sign in" />
                   <a href="#">Forgot Password?</a>
-                  <Button text="Don't have an account? Sign up now!" />
+                  {/* <Button text="Don't have an account? Sign up now!" /> */}
                </div>
             </div>
 
