@@ -11,7 +11,6 @@ import CompletedFormsPage from "../pages/dashboard";
 import { PageNotFound } from "../pages/_404";
 import { useAuthContent } from "../auth/auth.context";
 import { getData } from "../lib/http-functions/get";
-import { BasePath } from "../pages/base-path";
 import FormPage from "../pages/formpage";
 
 import Dashboard from "../pages/dashboard.js";

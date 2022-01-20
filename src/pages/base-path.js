@@ -6,7 +6,6 @@ import { useAuthContent } from "../auth/auth.context";
 import { getData } from "../lib/http-functions/get";
 
 export const BasePath = () => {
-   const history = useNavigate();
    const { _user } = useAuthContent();
 
    const checkData = async () => {

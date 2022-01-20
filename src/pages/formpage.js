@@ -4,13 +4,11 @@
 import React, { useState, useEffect } from "react";
 import SliderRange from "../Components/Slider-range/index.js";
 import "../Style/formpage.css";
-import { useAuthContent } from "../auth/auth.context";
 
 function FormPage() {
    const [experience, setExperience] = useState(3);
    const [speaker, setSpeaker] = useState(3);
    const [feeling, setFeeling] = useState(3);
-   const { userData } = useAuthContent();
 
    useEffect(() => {
       if (experience == 0) document.getElementById("ex-0").click();
