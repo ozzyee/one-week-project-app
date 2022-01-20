@@ -37,8 +37,7 @@ function Credentials() {
          bootcamperid: bootcamperId,
          cohort: cohort,
       });
-      console.log("=> => =>", p);
-      // history("/dashboard");
+      history("/dashboard");
    }
 
 
