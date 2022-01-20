@@ -1,35 +1,132 @@
-.form-page-wrapper{
-    padding: 2em;
+#root {
+   background-color: rgba(63, 71, 86, 1);
 }
 
-.rate-experience{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 2em;
+.form-page-wrapper {
+   margin: auto;
+   display: flex;
+   flex-direction: column;
+   background-color: rgba(63, 71, 86, 1);
+   min-height: 100vh;
+   max-width: 550px;
 }
 
-.guest-speaker-experience{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 2em;
+.form-page-wrapper {
+   padding: 1.5em;
 }
 
-.rate-emotionally-feeling{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-right: 0px;
-    margin-left: 13px;
-    box-sizing: border-box;
-    margin-bottom: 2em;
+h6 {
+   text-align: center;
+   color: rgba(74, 144, 226, 1);
+   margin-top: 2em;
 }
 
-.range-text{
-    margin: auto;
+p {
+   color: white;
 }
 
-.happy-face{
-    margin: auto;
+input:focus,
+textarea:focus,
+select:focus {
+   outline: none;
+}
+
+::placeholder {
+   color: rgb(169, 186, 218);
+   opacity: 1;
+}
+
+.form-header {
+   display: flex;
+   margin-bottom: 20px;
+   justify-content: space-between;
+}
+
+.form-header img {
+   margin-top: 0px;
+   margin-right: 1em;
+   margin: auto;
+}
+
+.form-header h1 {
+   color: rgba(74, 144, 226, 1);
+   padding: 10px;
+}
+
+.date-input {
+   display: flex;
+   flex-direction: column;
+   margin-left: 20px;
+   margin-right: 20px;
+}
+
+.date-input input {
+   margin: auto;
+   border-color: transparent;
+   border-bottom: solid 1px rgb(169, 186, 218);
+   padding-left: 10px;
+   padding-right: 10px;
+   width: 30em;
+   max-width: 100%;
+   margin-top: 0.7em;
+   margin-bottom: 2em;
+   background-color: transparent;
+}
+
+.rate-experience {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin-top: 2em;
+   margin-bottom: 3em;
+}
+
+.guest-speaker-experience {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin-top: 2em;
+   margin-bottom: 3em;
+}
+
+.rate-emotionally-feeling {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin-right: 0px;
+   margin-left: 13px;
+   box-sizing: border-box;
+   margin-top: 2em;
+   margin-bottom: 3em;
+}
+
+.range-text {
+   margin: auto;
+}
+
+.emoji {
+   margin: auto;
+}
+
+.slider-wrapper {
+   padding: 0;
+}
+
+.review-section {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-radius: 7px;
+   background-color: white;
+   padding: 10px;
+}
+
+.review-section textarea {
+   margin: auto;
+   border-color: transparent;
+   /* border-bottom: solid 1px rgb(169, 186, 218); */
+   padding-left: 10px;
+   width: 30em;
+   max-width: 100%;
 }
