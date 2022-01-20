@@ -8,6 +8,7 @@ import Cookies from "universal-cookie";
 import { post } from "../lib/http-functions/post";
 import { errorMessage } from "./err-msg";
 import { useNavigate } from "react-router-dom";
+import { getData } from "../lib/http-functions/get";
 
 const cookies = new Cookies();
 const loginUrl = "https://project-week-app.herokuapp.com/login";
@@ -30,7 +31,7 @@ export const ContextProvider = ({ children }) => {
 
    const [authenticated, setAuthenticated] = useState(null);
    const [loading, setLoading] = useState(true);
-   
+
    const [signupStage, setSignupStage] = useState(false);
 
    const setHasErr = (_hasError) => {
@@ -50,7 +51,6 @@ export const ContextProvider = ({ children }) => {
             await post(loginUrl, {
                uid: token,
             });
-
 
             setAuthenticated(true);
             history("/dashboard");
@@ -98,6 +98,23 @@ export const ContextProvider = ({ children }) => {
          cookies.set("token", "");
       }
       setUser(data.userData);
+
+      // redirect
+
+      const user = await getData(
+         `https://project-week-app.herokuapp.com/users/${data.userData.uid}`
+      );
+
+      const USER_DATA = user[0];
+      console.log("=> > =>");
+      console.log("=> > =>", USER_DATA.bootcmperid);
+
+      if (user.length === 0) {
+         history("/details");
+         console.log("NO DATA");
+      } else {
+         history("/dashboard");
+      }
    };
 
    useEffect(() => {

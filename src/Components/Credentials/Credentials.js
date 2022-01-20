@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import Button from "../button/Button";
 import Inputs from "../inputs/inputs";
 import Text from "../text/text";
 import { useNavigate } from "react-router-dom";
 import { post } from "../../lib/http-functions/post";
 import { useAuthContent } from "../../auth/auth.context";
+import { getData } from "../../lib/http-functions/get";
 
 // Note: css is in index.css as reusing these styles keeping it dry :)
 
@@ -13,11 +14,12 @@ const reducer = (state, action) => {};
 
 function Credentials() {
    const history = useNavigate();
-   const { _user} = useAuthContent();
+   const { _user } = useAuthContent();
    const [name, setName] = useState("");
    const [bootcamperId, setBootcamperId] = useState("");
    const [cohort, setCohort] = useState("");
    const [state] = useReducer(reducer, null);
+   const [loading, serLoading] = useState(true);
 
    console.log();
 
@@ -30,9 +32,28 @@ function Credentials() {
          bootcamperid: bootcamperId,
          cohort: cohort,
       });
-      console.log(p);
-      history("/");
+      console.log("=> => =>", p);
+      history("/dashboard");
    }
+
+   const checkData = async () => {
+      const user = await getData(
+         `https://project-week-app.herokuapp.com/users/${_user.uid}`
+      );
+      if (user.length === 0) {
+         serLoading(false);
+         history("/details");
+      } else {
+         serLoading(false);
+         history("/dashboard");
+      }
+   };
+
+   useEffect(() => {
+      checkData();
+   });
+
+   if (loading) return <h1>loading...</h1>;
 
    return (
       <div id="fixed-screen">
