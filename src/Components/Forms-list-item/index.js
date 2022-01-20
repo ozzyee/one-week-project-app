@@ -1,14 +1,25 @@
 import React from "react";
 
 function FormListItem({ item }) {
-  return (
-    <div>
-      <li className="form-list-item">
-        <p>{item.formtitle}</p>
-        <p>{item.date}</p>
-      </li>
-    </div>
-  );
+  if (item.iscompleted) {
+    return (
+      <div>
+        <li className="form-list-item form-complete">
+          <p>{item.formtitle}</p>
+          <p className="form-item-date">{item.date}</p>
+        </li>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <li className="form-list-item form-not-complete">
+          <p>{item.formtitle}</p>
+          <p className="form-item-date">{item.date}</p>
+        </li>
+      </div>
+    );
+  }
 }
 
 export default FormListItem;
