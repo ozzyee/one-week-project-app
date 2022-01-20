@@ -1,5 +1,7 @@
 import FormList from "../Components/FormList/index.js";
 import "../Style/dashboard.css";
+import useState from "react";
+import Notification from "../Components/Notification/Notification.js";
 
 function Dashboard() {
   const mockForms = [
@@ -45,14 +47,19 @@ function Dashboard() {
     return item.iscompleted === false;
   });
 
+  let todos = unCompletedMockForms.length;
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <img
-          className="logo-soc"
-          src="https://www.schoolofcode.co.uk/static/logo-51c754388b198e5bbb0d08a971ebbfa2.png"
-          alt="School of Code Logo"
-        />
+        <div className="logo-btn">
+          <img
+            className="logo-soc"
+            src="https://www.schoolofcode.co.uk/static/logo-51c754388b198e5bbb0d08a971ebbfa2.png"
+            alt="School of Code Logo"
+          />
+          <Notification todos={todos} />
+        </div>
         <h1 className="dashboard-h1">Welcome LuScOz</h1>
       </div>
       <h2 className="dashboard-h2">Forms To-Do</h2>
