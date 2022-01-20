@@ -40,17 +40,34 @@ select:focus {
    display: flex;
    margin-bottom: 20px;
    justify-content: space-between;
+   margin-bottom: 0.8em;
 }
 
 .form-header img {
    margin-top: 0px;
-   margin-right: 1em;
    margin: auto;
+   margin-left: 30px;
 }
 
-.form-header h1 {
-   color: rgba(74, 144, 226, 1);
+#logo {
+   width: 90px;
+   height: 95px;
+}
+
+.header-h1h2 {
+   color: white;
    padding: 10px;
+   margin-left: 27px;
+   flex: 2;
+}
+
+.header-h1h2 h1 {
+   font-size: 37px;
+   font-weight: bold;
+}
+
+.header-h1h2 h2 {
+   font-size: 25px;
 }
 
 .date-input {
@@ -64,13 +81,16 @@ select:focus {
    margin: auto;
    border-color: transparent;
    border-bottom: solid 1px rgb(169, 186, 218);
-   padding-left: 10px;
-   padding-right: 10px;
-   width: 30em;
+   width: 15em;
    max-width: 100%;
    margin-top: 0.7em;
    margin-bottom: 2em;
    background-color: transparent;
+   text-align: center;
+}
+
+.date-input input.placeholder {
+   text-align: center;
 }
 
 .rate-experience {
@@ -106,6 +126,7 @@ select:focus {
 
 .emoji {
    margin: auto;
+   font-size: 25px;
 }
 
 .slider-wrapper {

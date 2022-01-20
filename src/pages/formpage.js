@@ -12,7 +12,10 @@ function FormPage() {
                className="logo"
                id="logo"
             />
-            <h1>School of Code Content Feedback</h1>
+            <div className="header-h1h2">
+               <h1>School of Code</h1>
+               <h2>Content Feedback</h2>
+            </div>
          </div>
          <div className="date-input">
             <h6>Date</h6>
