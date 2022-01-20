@@ -1,19 +1,45 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useReducer } from "react";
 import Button from "../button/Button";
 import Inputs from "../inputs/inputs";
 import Text from "../text/text";
+import { useNavigate } from "react-router-dom";
+import { getData } from "../../lib/http-functions/get";
+import { post } from "../../lib/http-functions/post";
+import { useAuthContent } from "../../auth/auth.context";
+
 // Note: css is in index.css as reusing these styles keeping it dry :)
 
+const reducer = (state, action) => {};
+
 function Credentials() {
-   function uploadDetails() {
-      console.log("details added!");
+   const history = useNavigate();
+   const { _user, setHasErr, _setErrorMsg } = useAuthContent();
+   const [name, setName] = useState("");
+   const [bootcamperId, setBootcamperId] = useState("");
+   const [cohort, setCohort] = useState("");
+   const [state, dispatch] = useReducer(reducer, null);
+
+   console.log();
+
+   async function uploadDetails() {
+      console.log(_user);
+      const p = await post("https://project-week-app.herokuapp.com/users", {
+         googleuuid: _user.uid,
+         email: _user.email,
+         displayname: name,
+         bootcamperid: bootcamperId,
+         cohort: cohort,
+      });
+      console.log(p);
+      history("/");
    }
 
    return (
       <div id="fixed-screen">
          {/* Background */}
          <div className="bg-img-wrapper">
-            <img src="/space-4984262.jpg" className="bg-img" alt="bg"/>
+            <img src="/space-4984262.jpg" className="bg-img" alt="bg" />
             <div className="overlay" />
          </div>
          <section id="login">
@@ -33,9 +59,21 @@ function Credentials() {
 
                {/* Form */}
                <div className="input-wrapper" id="inputs">
-                  <Inputs placeholder="Name" />
-                  <Inputs placeholder="Bootcamper ID" />
-                  <Inputs placeholder="Cohort" />
+                  <Inputs
+                     placeholder="Name"
+                     onChange={(evt) => setName(evt.target.value)}
+                     className={state?.error && "red_boarder"}
+                  />
+                  <Inputs
+                     placeholder="Bootcamper ID"
+                     onChange={(evt) => setBootcamperId(evt.target.value)}
+                     className={state?.error && "red_boarder"}
+                  />
+                  <Inputs
+                     placeholder="Cohort"
+                     onChange={(evt) => setCohort(evt.target.value)}
+                     className={state?.error && "red_boarder"}
+                  />
                   <Button handleClick={uploadDetails} text="Next" />
                </div>
             </div>

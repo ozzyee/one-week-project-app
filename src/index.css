@@ -1,4 +1,5 @@
 body {
+ound-color: black; */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -7,6 +8,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   transition: all 120ms;
   background-color: #3f4756;
+
 }
 
 code {
@@ -106,6 +108,10 @@ code {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.red_boarder {
+   border: 2px solid red;
 }
 
 @media (min-width: 768px) {

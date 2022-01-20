@@ -1,66 +1,71 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable eqeqeq */
 import React, { useState, useReducer, useEffect } from "react";
-import Button from "../button/Button.js";
+import Button from "../button/Button";
 import Inputs from "../inputs/inputs";
 import Text from "../text/text";
 import { useAuthContent } from "../../auth/auth.context";
 import reducer from "../../functions/login-reducer";
+
 // Note: css is in index.css as reusing these styles keeping it dry :)
 
-function SignIn() {
+function SignUp() {
    const [email, setEmail] = useState();
    const [password, setPassword] = useState();
-   const { signIn, setHasErr, _setErrorMsg, hasError, fbErr } =
-      useAuthContent();
+   const [confirmPassword, setConfirmPassword] = useState("");
    const [state, dispatch] = useReducer(reducer, null);
 
-   function handleSignIn() {
-      // FORM ERR
-      if (!email && !password) {
-         dispatch({ type: "no_email_password" });
-         _setErrorMsg("you must enter a Email & Password");
+   const { signUp, setHasErr, _setErrorMsg, hasError, fbErr, errorMsg } =
+      useAuthContent();
+
+   const handleSignUp = () => {
+      if (!email && !password && !confirmPassword) {
+         dispatch({ type: "no_email_password_confirm" });
+         _setErrorMsg("you must enter a Email, Password & confirm password");
          setHasErr(true);
       } else if (!email) {
          dispatch({ type: "no_email" });
          _setErrorMsg("you must enter a Email");
          setHasErr(true);
       } else if (!password) {
-         dispatch({ type: "no_password" });
+         dispatch({ type: "passwords_no_match" });
          _setErrorMsg("you must enter a Password");
          setHasErr(true);
+      } else if (password !== confirmPassword) {
+         dispatch({ type: "passwords_no_match" });
+         _setErrorMsg("you passwords dont match");
+         setHasErr(true);
       } else {
-         dispatch({ type: "" });
          setHasErr(false);
-         signIn({ email, password });
+         signUp({ email, password });
+         dispatch({ type: "" });
+      }
+
+      if (!email && !confirmPassword) {
+         dispatch({ type: "no_email_password_confirm" });
+         _setErrorMsg("you must fill in all inputs");
+         setHasErr(true);
       }
 
       if (hasError) {
-         dispatch({ type: "no_email_password" });
+         dispatch({ type: "no_email_password_confirm" });
       }
-   }
+   };
 
    useEffect(() => {
-      if (fbErr.length > 0) {
+      if (fbErr.length > 0 || errorMsg.length > 0) {
          _setErrorMsg(fbErr);
          setHasErr(true);
       }
+      // eslint-disable-next-line eqeqeq
       if (fbErr == "The email address is badly formatted") {
          dispatch({ type: "no_email" });
       }
-      if (fbErr == "Wrong Password") {
-         dispatch({ type: "no_password" });
-      }
-      if (
-         fbErr == "There is no user corresponding with these details" ||
-         fbErr ==
-            "you account has been temporarily disabled due to too many failed logins" ||
-         fbErr == "an error ocurred we are very sorry"
-      ) {
-         dispatch({ type: "no_email_password" });
+
+      if (hasError) {
+         dispatch({ type: "no_email_password_confirm" });
       }
 
       // dispatch({ type: "no_password" });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [fbErr]);
 
    return (
@@ -81,7 +86,7 @@ function SignIn() {
                   />
                   <div className="text-wrapper">
                      <Text type="title">Welcome!</Text>
-                     <Text type="sub-title">Please sign in</Text>
+                     <Text type="sub-title">Please sign up</Text>
                   </div>
                </div>
 
@@ -89,17 +94,23 @@ function SignIn() {
                <div className="input-wrapper" id="inputs">
                   <Inputs
                      placeholder="Email"
-                     onChange={(evt) => setEmail(evt.target.value)}
                      type="email"
+                     onChange={(evt) => setEmail(evt.target.value)}
                      className={state?.email && "red_boarder"}
                   />
                   <Inputs
                      placeholder="Password"
-                     onChange={(evt) => setPassword(evt.target.value)}
                      type="password"
+                     onChange={(evt) => setPassword(evt.target.value)}
                      className={state?.password && "red_boarder"}
                   />
-                  <Button handleClick={handleSignIn} text="Sign in" />
+                  <Inputs
+                     placeholder="Confirm Password"
+                     type="password"
+                     onChange={(evt) => setConfirmPassword(evt.target.value)}
+                     className={state?.confirmPassword && "red_boarder"}
+                  />
+                  <Button handleClick={handleSignUp} text="Sign up" />
                </div>
             </div>
 
@@ -116,4 +127,4 @@ function SignIn() {
    );
 }
 
-export default SignIn;
+export default SignUp;
