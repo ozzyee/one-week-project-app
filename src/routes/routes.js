@@ -7,7 +7,7 @@ import Signup from "../pages/signup";
 import Signin from "../pages/signin";
 import Details from "../pages/credentials";
 
-import CompletedFormsPage from "../pages/dashboard";
+import CompletedFormsPage from "../pages/completedforms.js";
 import { PageNotFound } from "../pages/_404";
 import { useAuthContent } from "../auth/auth.context";
 import { post } from "../lib/http-functions/post";
@@ -40,6 +40,7 @@ export const Router = () => {
       }
       const USER_DATA = user[0];
 
+
       // if (
       //    !USER_DATA.bootcmperid &&
       //    !USER_DATA.displayname &&
@@ -51,6 +52,7 @@ export const Router = () => {
       //    // setLoading(false);
       //    history("/dashboard");
       // }
+
    };
 
    useEffect(() => {
