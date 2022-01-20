@@ -36,7 +36,9 @@ export const Router = () => {
             email: _user.email,
          });
       }
+
       // const USER_DATA = user[0];
+
 
       // if (
       //    !USER_DATA.bootcmperid &&
@@ -49,6 +51,7 @@ export const Router = () => {
       //    // setLoading(false);
       //    history("/dashboard");
       // }
+
    };
 
    useEffect(() => {
