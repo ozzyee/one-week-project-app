@@ -5,7 +5,7 @@ import { useAuthContent } from "../../auth/auth.context";
 
 function App() {
    const { hasError } = useAuthContent();
-   console.log(hasError);
+
    return (
       <>
          <CustomizedSnackbars status={hasError} />
