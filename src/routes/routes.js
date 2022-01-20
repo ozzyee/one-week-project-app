@@ -25,7 +25,7 @@ export const Router = () => {
    // if (loading) return null;
 
    const getUser = async () => {
-      const uid = _user.uid;
+      const uid = _user?.uid;
       const user = await getData(
          `https://project-week-app.herokuapp.com/users/${uid}`
       );
@@ -42,8 +42,8 @@ export const Router = () => {
 
    useEffect(() => {
       getUser();
-      if (!authenticated && currentUrl !== "signin") {
-         history("/");
+      if (!authenticated && currentUrl !== "signup") {
+         // history("/");
       }
       // if (authenticated && currentUrl !== "/") history("/dashboard");
    }, [authenticated, currentUrl, history, signupStage]);
@@ -59,12 +59,12 @@ export const Router = () => {
 export const Authenticated = () => {
    return (
       <Routes>
-         <Route path="/" element={<BasePath />} />
+         <Route path="/" element={<Dashboard />} />
 
          <Route path="details" element={<Details />} />
          <Route path="dashboard" element={<Dashboard />} />
          <Route path="completedforms" element={<CompletedFormsPage />} />
-         <Route path="form" element={<FormPage />} />
+         <Route path="form/:id" element={<FormPage />} />
          <Route path=":id" element={<PageNotFound />} />
       </Routes>
    );
@@ -73,8 +73,8 @@ export const Authenticated = () => {
 export const UnAuthenticated = () => {
    return (
       <Routes>
-         <Route path="/" element={<Signup />} />
-         <Route path="signin" element={<Signin />} />
+         <Route path="/signup" element={<Signup />} />
+         <Route path="/" element={<Signin />} />
          <Route path=":id" element={<PageNotFound />} />
       </Routes>
    );

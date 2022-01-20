@@ -38,7 +38,7 @@ function Credentials() {
          cohort: cohort,
       });
       console.log("=> => =>", p);
-      history("/dashboard");
+      // history("/dashboard");
    }
 
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable eqeqeq */
 import React, { useState, useReducer, useEffect } from "react";
@@ -70,11 +71,12 @@ function SignIn() {
    }, [fbErr]);
 
    const checkData = async () => {
+      if (!_user) return null;
       const user = await getData(
-         `https://project-week-app.herokuapp.com/users/${_user.uid}`
+         `https://project-week-app.herokuapp.com/users/${_user?.uid}`
       );
       if (user.length === 0) {
-         history("/details");
+         // history("/details");
          setLoading(false);
       } else {
          setLoading(false);
@@ -83,7 +85,7 @@ function SignIn() {
 
    useEffect(() => {
       checkData();
-   },[]);
+   }, []);
 
    return (
       <div id="fixed-screen">
@@ -122,7 +124,7 @@ function SignIn() {
                      className={state?.password && "red_boarder"}
                   />
                   <Button handleClick={handleSignIn} text="Sign in" />
-                  <a href='#'>Forgot Password?</a>
+                  <a href="#">Forgot Password?</a>
                   <Button text="Don't have an account? Sign up now!" />
                </div>
             </div>

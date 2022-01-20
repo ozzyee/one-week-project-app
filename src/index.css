@@ -1,161 +1,168 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: all 120ms;
-  background-color: #3f4756;
-
+   margin: 0;
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   transition: all 120ms;
+   background-color: #3f4756;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
-  margin-top: 25px;
+   width: 80px;
+   height: 80px;
+   margin-top: 25px;
 }
 
 #login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid green;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 2px solid green;
+}
+
+#dummyframe {
+   display: none;
 }
 
 .heading-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  top: 0;
-  z-index: 13;
-  width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   top: 0;
+   z-index: 13;
+   width: 100%;
 }
 
 .text-wrapper {
-  margin-top: 20px;
-  text-align: center;
-  position: relative;
+   margin-top: 20px;
+   text-align: center;
+   position: relative;
 }
 
 #planet-img-wrapper {
-  position: fixed;
-  right: -1px;
-  bottom: 0;
-  overflow: hidden;
+   position: fixed;
+   right: -1px;
+   bottom: 0;
+   overflow: hidden;
 
-  z-index: 200;
-  width: 200px;
-  height: 200px;
+   z-index: 200;
+   width: 200px;
+   height: 200px;
 }
 
 .planet-img {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 20;
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   z-index: 20;
 }
 
 .bg-img {
-  position: fixed;
-  width: 100vw;
-  height: 100%;
-  object-fit: cover;
+   position: fixed;
+   width: 100vw;
+   height: 100%;
+   object-fit: cover;
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  z-index: 10;
+   background-color: rgba(0, 0, 0, 0.5);
+   height: 100%;
+   width: 100%;
+   position: fixed;
+   z-index: 10;
 }
 
 .bg-img-wrapper {
-  width: 100vw;
-  z-index: 2;
+   width: 100vw;
+   z-index: 2;
 }
 
 .input-wrapper {
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+   z-index: 100;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
 }
 
 .input-wrapper button {
-  width: 80%;
+   width: 80%;
 }
 
 .input-wrapper input {
-  width: 80%;
+   width: 80%;
 }
 
 .login-wrapper {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  z-index: 2000;
-  top: 0;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+   width: 100vw;
+   height: 100vh;
+   position: absolute;
+   z-index: 2000;
+   top: 0;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
 }
 
 .red_boarder {
    border: 2px solid red;
 }
 
+.date_wrapper {
+   border: 2px solid red;
+}
+
 @media (min-width: 768px) {
-  #planet-img-wrapper {
-    width: 220px;
-    height: 220px;
-  }
+   #planet-img-wrapper {
+      width: 220px;
+      height: 220px;
+   }
 }
 
 @media (min-width: 359px) {
-  .input-wrapper {
-    top: 0;
-  }
+   .input-wrapper {
+      top: 0;
+   }
 
-  #inputs {
-    min-width: 400px;
-    max-width: 600px;
-  }
+   #inputs {
+      min-width: 400px;
+      max-width: 600px;
+   }
 }
 
 @media (min-width: 992px) {
-  #planet-img-wrapper {
-    width: 240px;
-    height: 240px;
-  }
+   #planet-img-wrapper {
+      width: 240px;
+      height: 240px;
+   }
 
-  .input-wrapper button {
-    height: 35px;
-    font-size: 1rem;
-  }
+   .input-wrapper button {
+      height: 35px;
+      font-size: 1rem;
+   }
 
-  .input-wrapper input {
-    font-size: 1rem;
-    height: 25px;
-  }
+   .input-wrapper input {
+      font-size: 1rem;
+      height: 25px;
+   }
 
-  .input-wrapper input:first-child {
-    margin-top: 3rem;
-  }
+   .input-wrapper input:first-child {
+      margin-top: 3rem;
+   }
 
-  footer {
-     position: fixed;
-     bottom: 0;
-     text-align: center;
-     font-size: 0.8em;
-     color: lightgray;gi
-  }
+   footer {
+      position: fixed;
+      bottom: 0;
+      text-align: center;
+      font-size: 0.8em;
+      color: lightgray;
+   }
 }

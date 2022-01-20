@@ -49,7 +49,7 @@ function SignUp() {
 
       if (hasError) {
          dispatch({ type: "no_email_password_confirm" });
-         history("/dashboard");
+         // history("/dashboard");
       }
    };
 

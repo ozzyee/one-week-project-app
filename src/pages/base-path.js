@@ -14,9 +14,9 @@ export const BasePath = () => {
          `https://project-week-app.herokuapp.com/users/${_user.uid}`
       );
       if (user.length === 0) {
-         history("/details");
+         // history("/details");
       } else {
-         history("/dashboard");
+         // history("/dashboard");
       }
    };
    useEffect(() => {

@@ -60,9 +60,9 @@ function Dashboard() {
       );
       console.log("this is user", user);
       if (user.length === 0) {
-         history("/details");
+         // history("/details");
       } else {
-         history("/dashboard");
+         // history("/dashboard");
       }
    };
 

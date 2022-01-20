@@ -1,20 +1,8 @@
-import React, { useState } from 'react';
-import RangeSlider from 'react-bootstrap-range-slider';
+import React, { useState } from "react";
+import RangeSlider from "react-bootstrap-range-slider";
 
-function SliderRange({max, min}){
-
-  const [ value, setValue ] = useState(0); 
-
-  return (
-    <RangeSlider
-      value= {value}
-      max= {max}
-      min= {min}
-      onChange={changeEvent => setValue(changeEvent.target.value)
-      }
-    />
-  );
-
-};
+function SliderRange({ max, min, onChange, value }) {
+   return <RangeSlider value={value} max={max} min={min} onChange={onChange} />;
+}
 
 export default SliderRange;

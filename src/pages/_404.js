@@ -10,14 +10,15 @@ export const PageNotFound = () => {
    const { _user } = useAuthContent();
 
    const checkData = async () => {
+      if (!_user) return null;
       const user = await getData(
          `https://project-week-app.herokuapp.com/users/${_user.uid}`
       );
       if (user.length === 0) {
-         history("/details");
+         // history("/details");
          setLoading(false);
       } else {
-         history("/dashboard");
+         // history("/dashboard");
 
          setLoading(false);
       }

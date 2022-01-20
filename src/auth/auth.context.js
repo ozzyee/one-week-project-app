@@ -11,52 +11,114 @@ import { useNavigate } from "react-router-dom";
 import { getData } from "../lib/http-functions/get";
 
 const cookies = new Cookies();
-const loginUrl = "https://project-week-app.herokuapp.com/login";
 const ContentContext = createContext({});
 
 export const useAuthContent = () => useContext(ContentContext);
 
-console.log("AUTH IS CALLED!!!!!!");
+const userObjectData = async (uid) => {
+   const userUrl = `https://project-week-app.herokuapp.com/users/${uid}`;
+   const userData = await getData(userUrl);
+   return userData;
+};
 
 export const ContextProvider = ({ children }) => {
-   const _cookie = cookies.get("token");
-
    firebase.initializeApp(firebaseConfig);
    const history = useNavigate();
-   // const [userData, setUserData] = useState({});
-   const [_user, setUser] = useState(null);
+   const [loading, setLoading] = useState(true);
+   const [componentMounted, setComponentMounted] = useState(false);
+
+   // ERROR STATE
    const [hasError, setHasError] = useState(false);
    const [errorMsg, setErrorMsg] = useState("");
    const [fbErr, setFbErr] = useState("");
 
-   const [authenticated, setAuthenticated] = useState(null);
-   const [loading, setLoading] = useState(true);
+   // USER STATE
+   const [userObject, setUserObject] = useState({});
+   const [_user, setUser] = useState(null);
+   const uid = _user?.uid;
 
-   const [signupStage, setSignupStage] = useState(false);
+   // AUTHENTICATED STATE
+   const [authenticated, setAuthenticated] = useState(false);
+
+   // CURRENT url
+   const currentUrl = window.location.href.split("/")[3];
 
    const setHasErr = (_hasError) => {
       setHasError(_hasError);
    };
 
-   useEffect(() => {}, []);
+   useEffect(() => {
+      (async () => {
+         if (uid) {
+            if (!userObject) {
+               setUserObject(await userObjectData(uid));
+            }
+         }
+      })();
+   }, [_user, currentUrl]);
+
+   useEffect(() => {
+      return firebase.auth().onIdTokenChanged(async (user) => {
+         if (!user) {
+            setAuthenticated(false);
+
+            setLoading(false);
+            setUser(null);
+            cookies.set("token", "", { path: "/" });
+            return;
+         }
+         if (!user && currentUrl !== "signup") {
+            history("/");
+         }
+
+         const token = await user.getIdToken();
+         setUser(user);
+         cookies.set("token", token, { path: "/" });
+         setComponentMounted(true);
+      });
+   }, [userObject]);
+
+   useEffect(() => {
+      (async () => {
+         if (uid) {
+            const user = await userObjectData(uid);
+            setUserObject(user);
+            user && setAuthenticated(true);
+
+            if (
+               !user[0].cohort &&
+               !user[0].bootcamperid &&
+               !user[0].displayname
+            ) {
+               console.log("NO DATA");
+               history("/details");
+               setLoading(false);
+            } else if (user) {
+               setLoading(false);
+            }
+
+            if (
+               user[0].cohort &&
+               user[0].bootcamperid &&
+               user[0].displayname &&
+               currentUrl === "details"
+            ) {
+               history("/dashboard");
+            }
+
+            if (!currentUrl && user) {
+               history("/dashboard");
+            } else if (currentUrl === "signup" && user) {
+               history("/dashboard");
+            }
+         }
+      })();
+   }, [componentMounted]);
 
    const signIn = async ({ email, password }) => {
-      // const email = "123@12111.com";
-      // const password = "testTOOMe12221";
       try {
          await firebase.auth().signInWithEmailAndPassword(email, password);
-         firebase.auth().onIdTokenChanged(async (user) => {
-            const token = await user?.getIdToken();
-            cookies.set("token", token, { path: "/" });
-            await post(loginUrl, {
-               uid: token,
-            });
-
-            setAuthenticated(true);
-            history("/dashboard");
-         });
-
-         // dashboard
+         setAuthenticated(true);
       } catch (error) {
          const err = errorMessage(error);
          setFbErr(err);
@@ -66,19 +128,8 @@ export const ContextProvider = ({ children }) => {
    async function signUp({ email, password }) {
       try {
          await firebase.auth().createUserWithEmailAndPassword(email, password);
-         firebase.auth().onIdTokenChanged(async (user) => {
-            const token = await user?.getIdToken();
-            cookies.set("token", token, { path: "/" });
-            const data = await post(loginUrl, {
-               uid: token,
-            });
-
-            console.log(data);
-
-            setAuthenticated(true);
-            setSignupStage(true);
-            history("/details");
-         });
+         history("/details");
+         setAuthenticated(true);
       } catch (error) {
          const err = errorMessage(error);
          setFbErr(err);
@@ -88,48 +139,6 @@ export const ContextProvider = ({ children }) => {
    const _setErrorMsg = (_err) => {
       setErrorMsg(_err);
    };
-
-   const setUserInMemory = async () => {
-      const data = await post(loginUrl, {
-         uid: _cookie,
-      });
-
-      if (data.err) {
-         cookies.set("token", "");
-      }
-      setUser(data.userData);
-
-      // redirect
-
-      const user = await getData(
-         `https://project-week-app.herokuapp.com/users/${data.userData.uid}`
-      );
-
-      const USER_DATA = user[0];
-      console.log("=> > =>");
-      console.log("=> > =>", USER_DATA.bootcmperid);
-      const currentUrl = window.location.href.split("/")[3];
-      const idUrl = window.location.href.split("/")[4];
-
-      console.log(idUrl.length);
-
-      if (user.length === 0) {
-         history("/details");
-         console.log("NO DATA");
-      }
-   };
-
-   useEffect(() => {
-      if (_user) setAuthenticated(true);
-
-      if (!_user && _cookie) {
-         setUserInMemory();
-      } else {
-         setLoading(false);
-      }
-   }, [_cookie, _user]);
-
-   if (loading) return <h1>loading... all</h1>;
 
    return (
       <ContentContext.Provider
@@ -143,7 +152,7 @@ export const ContextProvider = ({ children }) => {
             fbErr,
             authenticated,
             _user,
-            signupStage,
+            // userData,
          }}
       >
          {children}

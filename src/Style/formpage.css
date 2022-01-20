@@ -151,3 +151,29 @@ select:focus {
    width: 30em;
    max-width: 100%;
 }
+
+#date_wrapper {
+   border-bottom: 1px solid rgb(169, 186, 218);
+   width: 15em;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-left: auto;
+   margin-right: auto;
+   padding-top: 2rem;
+}
+.date {
+   width: 30% !important;
+   padding: 0 !important;
+   margin: 0 !important;
+   border-color: transparent !important;
+   color: rgb(169, 186, 218) !important;
+}
+#splash {
+   padding: 0;
+   margin: 0;
+}
+
+#HIDE_INPUST {
+   display: none;
+}
