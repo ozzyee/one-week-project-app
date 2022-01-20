@@ -4,14 +4,18 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 // PAGES!!
 import Signup from "../pages/signup";
-import Dashboard from "../pages/dashboard";
 import Signin from "../pages/signin";
 import Details from "../pages/credentials";
+
 import CompletedFormsPage from "../pages/completedforms.js";
 import { PageNotFound } from "../pages/_404";
 import { useAuthContent } from "../auth/auth.context";
 import { post } from "../lib/http-functions/post";
 import { getData } from "../lib/http-functions/get";
+
+import Dashboard from '../pages/dashboard.js';
+
+
 
 export const Router = () => {
    // const [loading, setLoading] = useState(true);
@@ -70,6 +74,7 @@ export const Router = () => {
 export const Authenticated = () => {
    return (
       <Routes>
+
          <Route path="details" element={<Details />} />
          <Route path="dashboard" element={<Dashboard />} />
          <Route path="completedforms" element={<CompletedFormsPage />} />
@@ -84,6 +89,7 @@ export const UnAuthenticated = () => {
          <Route path="/" element={<Signup />} />
          <Route path="signin" element={<Signin />} />
          <Route path=":id" element={<PageNotFound />} />
+
       </Routes>
    );
 };

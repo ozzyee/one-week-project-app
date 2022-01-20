@@ -1,30 +1,26 @@
 import React from "react";
 import { useState } from "react";
-// import './Dropdown.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+import 'bootstrap/dist/css/bootstrap.css';
 
-function Dropdown() {
-   const [toggle, setToggle] = useState(true);
-
-   function toggleMenu() {
-      console.log("it works!");
-      if (toggle === true) {
-         setToggle(false);
-      } else if (toggle === false) {
-         setToggle(true);
-      }
-   }
-
+function Menu() {
    return (
       <div className="dropdown">
-         <button onClick={toggleMenu} className="dropbtn"></button>
-         <div id="myDropdown" className="dropdown-content">
-             {/* NOTE WONT BUILD IF HREF ARE WRONG */}
-            {/* <a>Home</a>
-            <a>Dashboard</a>
-            <a>Completed forms</a> */}
-         </div>
+         {/* <button onClick={toggleMenu} className="dropbtn"></button> */}
+         <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+               Dropdown Button
+            </Dropdown.Toggle>
+
+         <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">Home</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Completed Forms</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Forms to-do</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Forms to-do</Dropdown.Item>
+            </Dropdown.Menu>
+         </Dropdown>
       </div>
    );
 }
 
-export default Dropdown;
+export default Menu;

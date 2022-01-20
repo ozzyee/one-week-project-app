@@ -51,6 +51,7 @@ export const ContextProvider = ({ children }) => {
                uid: token,
             });
 
+
             setAuthenticated(true);
             history("/dashboard");
          });
