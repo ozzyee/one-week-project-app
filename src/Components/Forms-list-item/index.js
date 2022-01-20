@@ -5,7 +5,7 @@ function FormListItem({ item }) {
     return (
       <div>
         <li className="form-list-item form-complete">
-          <p>{item.formtitle}</p>
+          <p className="form-title">{item.formtitle}</p>
           <p className="form-item-date">{item.date}</p>
         </li>
       </div>
@@ -14,7 +14,7 @@ function FormListItem({ item }) {
     return (
       <div>
         <li className="form-list-item form-not-complete">
-          <p>{item.formtitle}</p>
+          <p className="form-title">{item.formtitle}</p>
           <p className="form-item-date">{item.date}</p>
         </li>
       </div>
