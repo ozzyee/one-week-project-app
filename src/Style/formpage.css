@@ -1,153 +1,153 @@
 #root {
-   background-color: rgba(63, 71, 86, 1);
+  background-color: rgba(63, 71, 86, 1);
 }
 
 .form-page-wrapper {
-   margin: auto;
-   display: flex;
-   flex-direction: column;
-   background-color: rgba(63, 71, 86, 1);
-   min-height: 100vh;
-   max-width: 550px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(63, 71, 86, 1);
+  min-height: 100vh;
+  max-width: 550px;
 }
 
 .form-page-wrapper {
-   padding: 1.5em;
+  padding: 1.5em;
 }
 
 h6 {
-   text-align: center;
-   color: rgba(74, 144, 226, 1);
-   margin-top: 2em;
+  text-align: center;
+  color: rgba(74, 144, 226, 1);
+  margin-top: 2em;
 }
 
-p {
+/* p {
    color: white;
-}
+} */
 
 input:focus,
 textarea:focus,
 select:focus {
-   outline: none;
+  outline: none;
 }
 
 ::placeholder {
-   color: rgb(169, 186, 218);
-   opacity: 1;
+  color: rgb(169, 186, 218);
+  opacity: 1;
 }
 
 .form-header {
-   display: flex;
-   margin-bottom: 20px;
-   justify-content: space-between;
-   margin-bottom: 0.8em;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  margin-bottom: 0.8em;
 }
 
 .form-header img {
-   margin-top: 0px;
-   margin: auto;
-   margin-left: 30px;
+  margin-top: 0px;
+  margin: auto;
+  margin-left: 30px;
 }
 
 #logo {
-   width: 90px;
-   height: 95px;
+  width: 90px;
+  height: 95px;
 }
 
 .header-h1h2 {
-   color: white;
-   padding: 10px;
-   margin-left: 27px;
-   flex: 2;
+  color: white;
+  padding: 10px;
+  margin-left: 27px;
+  flex: 2;
 }
 
 .header-h1h2 h1 {
-   font-size: 37px;
-   font-weight: bold;
+  font-size: 37px;
+  font-weight: bold;
 }
 
 .header-h1h2 h2 {
-   font-size: 25px;
+  font-size: 25px;
 }
 
 .date-input {
-   display: flex;
-   flex-direction: column;
-   margin-left: 20px;
-   margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .date-input input {
-   margin: auto;
-   border-color: transparent;
-   border-bottom: solid 1px rgb(169, 186, 218);
-   width: 15em;
-   max-width: 100%;
-   margin-top: 0.7em;
-   margin-bottom: 2em;
-   background-color: transparent;
-   text-align: center;
+  margin: auto;
+  border-color: transparent;
+  border-bottom: solid 1px rgb(169, 186, 218);
+  width: 15em;
+  max-width: 100%;
+  margin-top: 0.7em;
+  margin-bottom: 2em;
+  background-color: transparent;
+  text-align: center;
 }
 
 .date-input input.placeholder {
-   text-align: center;
+  text-align: center;
 }
 
 .rate-experience {
-   display: flex;
-   justify-content: space-between;
-   flex-wrap: wrap;
-   margin-top: 2em;
-   margin-bottom: 3em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2em;
+  margin-bottom: 3em;
 }
 
 .guest-speaker-experience {
-   display: flex;
-   justify-content: space-between;
-   flex-wrap: wrap;
-   margin-top: 2em;
-   margin-bottom: 3em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2em;
+  margin-bottom: 3em;
 }
 
 .rate-emotionally-feeling {
-   display: flex;
-   justify-content: space-between;
-   flex-wrap: wrap;
-   margin-right: 0px;
-   margin-left: 13px;
-   box-sizing: border-box;
-   margin-top: 2em;
-   margin-bottom: 3em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-right: 0px;
+  margin-left: 13px;
+  box-sizing: border-box;
+  margin-top: 2em;
+  margin-bottom: 3em;
 }
 
 .range-text {
-   margin: auto;
+  margin: auto;
 }
 
 .emoji {
-   margin: auto;
-   font-size: 25px;
+  margin: auto;
+  font-size: 25px;
 }
 
 .slider-wrapper {
-   padding: 0;
+  padding: 0;
 }
 
 .review-section {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   border-radius: 7px;
-   background-color: white;
-   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  background-color: white;
+  padding: 10px;
 }
 
 .review-section textarea {
-   margin: auto;
-   border-color: transparent;
-   /* border-bottom: solid 1px rgb(169, 186, 218); */
-   padding-left: 10px;
-   width: 30em;
-   max-width: 100%;
+  margin: auto;
+  border-color: transparent;
+  /* border-bottom: solid 1px rgb(169, 186, 218); */
+  padding-left: 10px;
+  width: 30em;
+  max-width: 100%;
 }
