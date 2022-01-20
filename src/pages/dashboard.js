@@ -31,40 +31,6 @@ function Dashboard() {
       })();
    }, []);
 
-   const mockForms = [
-      {
-         key: 1,
-         formid: 1,
-         formtitle: "Content Feedback",
-         date: "18/01/22",
-         userid: "hggvhnv7rer",
-         iscompleted: true,
-         synopsis: "",
-         url: "www.bbc.com",
-      },
-
-      {
-         key: 2,
-         formid: 2,
-         formtitle: "Content Feedback",
-         date: "17/01/22",
-         userid: "hggvhnv7rer",
-         iscompleted: false,
-         synopsis: "",
-         url: "www.bbc.com/1",
-      },
-
-      {
-         key: 3,
-         formid: 3,
-         formtitle: "Content Feedback",
-         date: "16/01/22",
-         userid: "qwerty123",
-         iscompleted: true,
-         synopsis: "",
-         url: "www.bbc.com",
-      },
-   ];
 
    const completedMockForms = forms?.filter(function (item) {
       return item.iscompleted === true;
