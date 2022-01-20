@@ -110,7 +110,7 @@ function SignUp() {
                      onChange={(evt) => setConfirmPassword(evt.target.value)}
                      className={state?.confirmPassword && "red_boarder"}
                   />
-                  <Button handleClick={handleSignUp} text="Sign in" />
+                  <Button handleClick={handleSignUp} text="Sign up" />
                </div>
             </div>
 

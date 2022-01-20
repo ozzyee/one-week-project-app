@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { createContext, useContext, useState, useEffect } from "react";
 import { firebaseConfig } from "../lib/firebase/firebase.config";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -6,23 +7,37 @@ import "firebase/compat/firestore";
 import Cookies from "universal-cookie";
 import { post } from "../lib/http-functions/post";
 import { errorMessage } from "./err-msg";
+import { useNavigate } from "react-router-dom";
 
 const cookies = new Cookies();
 const loginUrl = "https://project-week-app.herokuapp.com/login";
-
 const ContentContext = createContext({});
+
 export const useAuthContent = () => useContext(ContentContext);
 
+console.log("AUTH IS CALLED!!!!!!");
+
 export const ContextProvider = ({ children }) => {
+   const _cookie = cookies.get("token");
+
    firebase.initializeApp(firebaseConfig);
+   const history = useNavigate();
+   // const [userData, setUserData] = useState({});
    const [_user, setUser] = useState(null);
    const [hasError, setHasError] = useState(false);
    const [errorMsg, setErrorMsg] = useState("");
    const [fbErr, setFbErr] = useState("");
 
+   const [authenticated, setAuthenticated] = useState(null);
+   const [loading, setLoading] = useState(true);
+   
+   const [signupStage, setSignupStage] = useState(false);
+
    const setHasErr = (_hasError) => {
       setHasError(_hasError);
    };
+
+   useEffect(() => {}, []);
 
    const signIn = async ({ email, password }) => {
       // const email = "123@12111.com";
@@ -32,10 +47,12 @@ export const ContextProvider = ({ children }) => {
          firebase.auth().onIdTokenChanged(async (user) => {
             const token = await user?.getIdToken();
             cookies.set("token", token, { path: "/" });
-            const data = await post(loginUrl, {
+            await post(loginUrl, {
                uid: token,
             });
-            setUser(data.userData);
+
+            setAuthenticated(true);
+            history("/dashboard");
          });
 
          // dashboard
@@ -54,7 +71,12 @@ export const ContextProvider = ({ children }) => {
             const data = await post(loginUrl, {
                uid: token,
             });
-            setUser(data.userData);
+
+            console.log(data);
+
+            setAuthenticated(true);
+            setSignupStage(true);
+            history("/details");
          });
       } catch (error) {
          const err = errorMessage(error);
@@ -66,9 +88,28 @@ export const ContextProvider = ({ children }) => {
       setErrorMsg(_err);
    };
 
-   if (!_user) {
-      console.log("hello");
-   }
+   const setUserInMemory = async () => {
+      const data = await post(loginUrl, {
+         uid: _cookie,
+      });
+
+      if (data.err) {
+         cookies.set("token", "");
+      }
+      setUser(data.userData);
+   };
+
+   useEffect(() => {
+      if (_user) setAuthenticated(true);
+
+      if (!_user && _cookie) {
+         setUserInMemory();
+      } else {
+         setLoading(false);
+      }
+   }, [_cookie, _user]);
+
+   if (loading) return null;
 
    return (
       <ContentContext.Provider
@@ -80,6 +121,9 @@ export const ContextProvider = ({ children }) => {
             errorMsg,
             _setErrorMsg,
             fbErr,
+            authenticated,
+            _user,
+            signupStage,
          }}
       >
          {children}
