@@ -93,6 +93,9 @@ function Dashboard() {
             <h2 className="dashboard-h2">Completed Forms</h2>
             <FormList forms={completedMockForms} />
          </div>
+         <footer>
+            <a href="#">Sign Out</a>
+            </footer>
       </div>
    );
 }
