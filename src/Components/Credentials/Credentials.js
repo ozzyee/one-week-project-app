@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import Button from "../button/Button";
 import Inputs from "../inputs/inputs";
 import Text from "../text/text";
 import { useNavigate } from "react-router-dom";
-import { getData } from "../../lib/http-functions/get";
 import { post } from "../../lib/http-functions/post";
 import { useAuthContent } from "../../auth/auth.context";
 
@@ -14,11 +13,11 @@ const reducer = (state, action) => {};
 
 function Credentials() {
    const history = useNavigate();
-   const { _user, setHasErr, _setErrorMsg } = useAuthContent();
+   const { _user} = useAuthContent();
    const [name, setName] = useState("");
    const [bootcamperId, setBootcamperId] = useState("");
    const [cohort, setCohort] = useState("");
-   const [state, dispatch] = useReducer(reducer, null);
+   const [state] = useReducer(reducer, null);
 
    console.log();
 
