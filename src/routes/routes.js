@@ -40,17 +40,19 @@ export const Router = () => {
       }
       const USER_DATA = user[0];
 
-      if (
-         !USER_DATA.bootcmperid &&
-         !USER_DATA.displayname &&
-         !USER_DATA.cohort
-      ) {
-         // setLoading(false);
-         history("/details");
-      } else {
-         // setLoading(false);
-         history("/dashboard");
-      }
+
+      // if (
+      //    !USER_DATA.bootcmperid &&
+      //    !USER_DATA.displayname &&
+      //    !USER_DATA.cohort
+      // ) {
+      //    // setLoading(false);
+      //    history("/details");
+      // } else {
+      //    // setLoading(false);
+      //    history("/dashboard");
+      // }
+
    };
 
    useEffect(() => {
