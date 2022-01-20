@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import FormList from "../Components/FormList/index.js";
 import React, { useEffect, useState } from "react";
 import "../Style/dashboard.css";
@@ -57,18 +58,17 @@ function Dashboard() {
       const user = await getData(
          `https://project-week-app.herokuapp.com/users/${_user.uid}`
       );
+      console.log("this is user", user);
       if (user.length === 0) {
          history("/details");
-         setLoading(false);
       } else {
-         setLoading(false);
+         history("/dashboard");
       }
    };
+
    useEffect(() => {
       checkData();
-   });
-
-   if (loading) return <h1>loading</h1>;
+   }, [loading]);
 
    let todos = unCompletedMockForms.length;
 

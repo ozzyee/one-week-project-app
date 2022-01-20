@@ -5,13 +5,19 @@ import Button from "../button/Button.js";
 import Inputs from "../inputs/inputs";
 import Text from "../text/text";
 import { useAuthContent } from "../../auth/auth.context";
+import { useNavigate } from "react-router-dom";
+import { getData } from "../../lib/http-functions/get";
+
 import reducer from "../../functions/login-reducer";
 // Note: css is in index.css as reusing these styles keeping it dry :)
 
 function SignIn() {
    const [email, setEmail] = useState();
    const [password, setPassword] = useState();
-   const { signIn, setHasErr, _setErrorMsg, hasError, fbErr } =
+   const [loading, setLoading] = useState(true);
+   const history = useNavigate();
+
+   const { signIn, setHasErr, _setErrorMsg, hasError, fbErr, _user } =
       useAuthContent();
    const [state, dispatch] = useReducer(reducer, null);
 
@@ -62,6 +68,22 @@ function SignIn() {
 
       // dispatch({ type: "no_password" });
    }, [fbErr]);
+
+   const checkData = async () => {
+      const user = await getData(
+         `https://project-week-app.herokuapp.com/users/${_user.uid}`
+      );
+      if (user.length === 0) {
+         history("/details");
+         setLoading(false);
+      } else {
+         setLoading(false);
+      }
+   };
+
+   useEffect(() => {
+      checkData();
+   },[]);
 
    return (
       <div id="fixed-screen">

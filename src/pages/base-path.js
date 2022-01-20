@@ -23,5 +23,5 @@ export const BasePath = () => {
       checkData();
    });
 
-   return <h1>loading...</h1>;
+   return <h1>loading..MEEEE.</h1>;
 };

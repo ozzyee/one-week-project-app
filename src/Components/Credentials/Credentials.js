@@ -17,7 +17,7 @@ const reducer = (state, action) => {};
 function Credentials() {
    const history = useNavigate();
 
-   const { _user} = useAuthContent();
+   const { _user } = useAuthContent();
 
    const [name, setName] = useState("");
    const [bootcamperId, setBootcamperId] = useState("");
@@ -25,7 +25,6 @@ function Credentials() {
    const [state] = useReducer(reducer, null);
 
    const [loading, serLoading] = useState(true);
-
 
    console.log();
 
@@ -42,24 +41,8 @@ function Credentials() {
       history("/dashboard");
    }
 
-   const checkData = async () => {
-      const user = await getData(
-         `https://project-week-app.herokuapp.com/users/${_user.uid}`
-      );
-      if (user.length === 0) {
-         serLoading(false);
-         history("/details");
-      } else {
-         serLoading(false);
-         history("/dashboard");
-      }
-   };
 
-   useEffect(() => {
-      checkData();
-   });
 
-   if (loading) return <h1>loading...</h1>;
 
    return (
       <div id="fixed-screen">
