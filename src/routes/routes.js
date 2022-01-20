@@ -10,8 +10,8 @@ import Details from "../pages/credentials";
 import CompletedFormsPage from "../pages/dashboard";
 import { PageNotFound } from "../pages/_404";
 import { useAuthContent } from "../auth/auth.context";
-import { post } from "../lib/http-functions/post";
 import { getData } from "../lib/http-functions/get";
+import { BasePath } from "../pages/base-path";
 
 import Dashboard from "../pages/dashboard.js";
 
@@ -29,28 +29,9 @@ export const Router = () => {
          `https://project-week-app.herokuapp.com/users/${uid}`
       );
 
-      const usersArrLength = user.length;
-      if (usersArrLength == 0) {
-         post("https://project-week-app.herokuapp.com/users", {
-            googleuuid: _user.uid,
-            email: _user.email,
-         });
-      }
 
-      // const USER_DATA = user[0];
-
-
-      // if (
-      //    !USER_DATA.bootcmperid &&
-      //    !USER_DATA.displayname &&
-      //    !USER_DATA.cohort
-      // ) {
-      //    // setLoading(false);
-      //    history("/details");
-      // } else {
-      //    // setLoading(false);
-      //    history("/dashboard");
-      // }
+      const USER_DATA = user[0];
+      console.log(USER_DATA);
 
    };
 
@@ -62,11 +43,15 @@ export const Router = () => {
 
    useEffect(() => {
       getUser();
-      // if (authenticated && !currentUrl && !signupStage) history("/dashboard");
       if (!authenticated && currentUrl !== "signin") {
          history("/");
       }
+      // if (authenticated && currentUrl !== "/") history("/dashboard");
    }, [authenticated, currentUrl, history, signupStage]);
+
+   useEffect(() => {
+      getUser();
+   }, []);
 
    // if (loading) return null;
    return <>{auth ? <Authenticated /> : <UnAuthenticated />}</>;
@@ -75,6 +60,9 @@ export const Router = () => {
 export const Authenticated = () => {
    return (
       <Routes>
+
+         <Route path="/" element={<BasePath />} />
+
          <Route path="details" element={<Details />} />
          <Route path="dashboard" element={<Dashboard />} />
          <Route path="completedforms" element={<CompletedFormsPage />} />
