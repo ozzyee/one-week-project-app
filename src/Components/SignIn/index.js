@@ -122,6 +122,8 @@ function SignIn() {
                      className={state?.password && "red_boarder"}
                   />
                   <Button handleClick={handleSignIn} text="Sign in" />
+                  <a href='#'>Forgot Password?</a>
+                  <Button text="Don't have an account? Sign up now!" />
                </div>
             </div>
 
