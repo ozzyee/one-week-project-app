@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContent } from "../auth/auth.context";
 import { getData } from "../lib/http-functions/get";
 
-
 function Dashboard() {
    const mockForms = [
       {
@@ -71,36 +70,29 @@ function Dashboard() {
 
    if (loading) return <h1>loading</h1>;
 
-  let todos = unCompletedMockForms.length;
+   let todos = unCompletedMockForms.length;
 
-  return (
-    <div className="dashboard-container">
-      <div className="dashboard-header">
-        <div className="logo-btn">
-          <img
-            className="logo-soc"
-            src="https://www.schoolofcode.co.uk/static/logo-51c754388b198e5bbb0d08a971ebbfa2.png"
-            alt="School of Code Logo"
-          />
-          <Notification todos={todos} />
-        </div>
-        <h1 className="dashboard-h1">Welcome LuScOz</h1>
+   return (
+      <div className="dashboard-container">
+         <div className="dashboard-header">
+            <div className="logo-btn">
+               <img
+                  className="logo-soc"
+                  src="https://www.schoolofcode.co.uk/static/logo-51c754388b198e5bbb0d08a971ebbfa2.png"
+                  alt="School of Code Logo"
+               />
+               <Notification todos={todos} />
+            </div>
+            <h1 className="dashboard-h1">Welcome LuScOz</h1>
+         </div>
 
-//    return (
-//       <div className="dashboard-container">
-//          <div className="dashboard-header">
-//             <img
-//                className="logo-soc"
-//                src="https://www.schoolofcode.co.uk/static/logo-51c754388b198e5bbb0d08a971ebbfa2.png"
-//                alt="School of Code Logo"
-//             />
-//             <h1 className="dashboard-h1">Welcome LuScOz</h1>
-//          </div>
-         <h2 className="dashboard-h2">Forms To-Do</h2>
-         <FormList forms={unCompletedMockForms} />
-         <h2 className="dashboard-h2">Completed Forms</h2>
-         <FormList forms={completedMockForms} />
-
+         <div className="dashboard-container">
+            <div className="dashboard-header"></div>
+            <h2 className="dashboard-h2">Forms To-Do</h2>
+            <FormList forms={unCompletedMockForms} />
+            <h2 className="dashboard-h2">Completed Forms</h2>
+            <FormList forms={completedMockForms} />
+         </div>
       </div>
    );
 }
