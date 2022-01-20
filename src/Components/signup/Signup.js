@@ -4,7 +4,6 @@ import Inputs from "../inputs/inputs";
 import Text from "../text/text";
 import { useAuthContent } from "../../auth/auth.context";
 import reducer from "../../functions/login-reducer";
-import { useNavigate } from "react-router-dom";
 
 // Note: css is in index.css as reusing these styles keeping it dry :)
 
@@ -13,7 +12,6 @@ function SignUp() {
    const [password, setPassword] = useState();
    const [confirmPassword, setConfirmPassword] = useState("");
    const [state, dispatch] = useReducer(reducer, null);
-   const history = useNavigate();
 
    const { signUp, setHasErr, _setErrorMsg, hasError, fbErr, errorMsg } =
       useAuthContent();

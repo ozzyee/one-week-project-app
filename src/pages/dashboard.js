@@ -1,9 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
 import FormList from "../Components/FormList/index.js";
 import React, { useEffect, useState } from "react";
 import "../Style/dashboard.css";
 import Notification from "../Components/Notification/Notification.js";
-import { useNavigate } from "react-router-dom";
 import { useAuthContent } from "../auth/auth.context";
 import { getData } from "../lib/http-functions/get";
 
@@ -42,7 +42,7 @@ function Dashboard() {
          url: "www.bbc.com",
       },
    ];
-   const [loading, setLoading] = useState(true);
+   const [loading] = useState(true);
    const completedMockForms = mockForms.filter(function (item) {
       return item.iscompleted === true;
    });
@@ -51,7 +51,6 @@ function Dashboard() {
       return item.iscompleted === false;
    });
 
-   const history = useNavigate();
    const { _user } = useAuthContent();
 
    const checkData = async () => {
@@ -95,7 +94,7 @@ function Dashboard() {
          </div>
          <footer>
             <a href="#">Sign Out</a>
-            </footer>
+         </footer>
       </div>
    );
 }

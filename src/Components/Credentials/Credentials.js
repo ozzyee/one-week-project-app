@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer } from "react";
 
 import Button from "../button/Button";
 import Inputs from "../inputs/inputs";
@@ -8,7 +8,6 @@ import Text from "../text/text";
 import { useNavigate } from "react-router-dom";
 import { post } from "../../lib/http-functions/post";
 import { useAuthContent } from "../../auth/auth.context";
-import { getData } from "../../lib/http-functions/get";
 
 // Note: css is in index.css as reusing these styles keeping it dry :)
 
@@ -16,21 +15,15 @@ const reducer = (state, action) => {};
 
 function Credentials() {
    const history = useNavigate();
-
    const { _user } = useAuthContent();
-
    const [name, setName] = useState("");
    const [bootcamperId, setBootcamperId] = useState("");
    const [cohort, setCohort] = useState("");
    const [state] = useReducer(reducer, null);
 
-   const [loading, serLoading] = useState(true);
-
-   console.log();
-
    async function uploadDetails() {
       console.log(_user);
-      const p = await post("https://project-week-app.herokuapp.com/users", {
+      await post("https://project-week-app.herokuapp.com/users", {
          googleuuid: _user.uid,
          email: _user.email,
          displayname: name,
@@ -39,9 +32,6 @@ function Credentials() {
       });
       history("/dashboard");
    }
-
-
-
 
    return (
       <div id="fixed-screen">

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useContext, useState, useEffect } from "react";
 import { firebaseConfig } from "../lib/firebase/firebase.config";
@@ -5,7 +6,6 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import Cookies from "universal-cookie";
-import { post } from "../lib/http-functions/post";
 import { errorMessage } from "./err-msg";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../lib/http-functions/get";
