@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import "../Style/dashboard.css";
-import { useNavigate } from "react-router-dom";
+
 import { useAuthContent } from "../auth/auth.context";
 import { getData } from "../lib/http-functions/get";
 
