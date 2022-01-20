@@ -29,8 +29,10 @@ export const Router = () => {
          `https://project-week-app.herokuapp.com/users/${uid}`
       );
 
+
       const USER_DATA = user[0];
       console.log(USER_DATA);
+
    };
 
    useEffect(() => {
@@ -58,7 +60,9 @@ export const Router = () => {
 export const Authenticated = () => {
    return (
       <Routes>
+
          <Route path="/" element={<BasePath />} />
+
          <Route path="details" element={<Details />} />
          <Route path="dashboard" element={<Dashboard />} />
          <Route path="completedforms" element={<CompletedFormsPage />} />

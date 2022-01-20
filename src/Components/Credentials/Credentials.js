@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useState, useReducer, useEffect } from "react";
+
 import Button from "../button/Button";
 import Inputs from "../inputs/inputs";
 import Text from "../text/text";
@@ -14,12 +16,16 @@ const reducer = (state, action) => {};
 
 function Credentials() {
    const history = useNavigate();
-   const { _user } = useAuthContent();
+
+   const { _user} = useAuthContent();
+
    const [name, setName] = useState("");
    const [bootcamperId, setBootcamperId] = useState("");
    const [cohort, setCohort] = useState("");
    const [state] = useReducer(reducer, null);
+
    const [loading, serLoading] = useState(true);
+
 
    console.log();
 
