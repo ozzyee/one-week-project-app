@@ -9,12 +9,15 @@ import { useAuthContent } from "../auth/auth.context";
 import MuiAlert from "@mui/material/Alert";
 import { patch } from "../lib/http-functions/patch";
 import { useNavigate } from "react-router-dom";
+import { getData } from "../lib/http-functions/get";
 
 function FormPage() {
    const [experience, setExperience] = useState(3);
    const [speaker, setSpeaker] = useState(3);
    const [feeling, setFeeling] = useState(3);
    const [open, setOpen] = useState(false);
+   const [user, setUser] = useState();
+
    const history = useNavigate();
    const { _user } = useAuthContent();
 
@@ -40,6 +43,16 @@ function FormPage() {
       if (feeling == 4) document.getElementById("fl-4").click();
       if (feeling == 5) document.getElementById("fl-5").click();
    }, [experience, speaker, feeling]);
+
+   useEffect(() => {
+      (async () => {
+         const user = await getData(
+            `https://project-week-app.herokuapp.com/users/${_user.uid}`
+         );
+
+         setUser(user[0]);
+      })();
+   }, [_user]);
 
    const [state] = useState({
       vertical: "bottom",
@@ -93,7 +106,14 @@ function FormPage() {
                target="dummyframe"
             >
                <div id="HIDE_INPUST">
-                  <input name="entry.1585076580" value="MY_ID" />
+                  <input name="entry.521146627" value="Mohammed Ali" />
+                  <input name="entry.1292536241" value="10" />
+                  <input name="entry.1893167912" value="Morning" />
+                  <input name="entry.2062293409" value="2022-01-21" />
+                  <input
+                     name="entry.1585076580"
+                     value="Gptvep5eichL2tWQurUST9WELih1"
+                  />
                   <div id="time">
                      <input
                         type="radio"

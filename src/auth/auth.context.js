@@ -19,7 +19,9 @@ const userObjectData = async (uid) => {
    console.log("this is UID");
    const userUrl = `https://project-week-app.herokuapp.com/users/${uid}`;
    const userData = await getData(userUrl);
+   console.log("id => ->",userData);
    return userData;
+
 };
 
 export const ContextProvider = ({ children }) => {
@@ -37,7 +39,6 @@ export const ContextProvider = ({ children }) => {
    const [userObject, setUserObject] = useState({});
    const [_user, setUser] = useState(null);
    const uid = _user?.uid;
-
 
    // AUTHENTICATED STATE
    const [authenticated, setAuthenticated] = useState(false);
@@ -74,7 +75,7 @@ export const ContextProvider = ({ children }) => {
          }
 
          const token = await user.getIdToken();
-
+         console.log(user);
          setUser(user._delegate);
          cookies.set("token", token, { path: "/" });
          setComponentMounted(true);
@@ -88,26 +89,26 @@ export const ContextProvider = ({ children }) => {
             setUserObject(user);
             user && setAuthenticated(true);
 
-            if (
-               !user[0].cohort &&
-               !user[0].bootcamperid &&
-               !user[0].displayname
-            ) {
-               console.log("NO DATA");
-               history("/details");
-               setLoading(false);
-            } else if (user) {
-               setLoading(false);
-            }
+            // if (
+            //    !user[0].cohort &&
+            //    !user[0].bootcamperid &&
+            //    !user[0].displayname
+            // ) {
+            //    console.log("NO DATA");
+            //    history("/details");
+            //    setLoading(false);
+            // } else if (user) {
+            //    setLoading(false);
+            // }
 
-            if (
-               user[0].cohort &&
-               user[0].bootcamperid &&
-               user[0].displayname &&
-               currentUrl === "details"
-            ) {
-               history("/dashboard");
-            }
+            // if (
+            //    user[0].cohort &&
+            //    user[0].bootcamperid &&
+            //    user[0].displayname &&
+            //    currentUrl === "details"
+            // ) {
+            //    history("/dashboard");
+            // }
 
             if (!currentUrl && user) {
                history("/dashboard");
