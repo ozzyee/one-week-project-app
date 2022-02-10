@@ -107,8 +107,8 @@ function FormPage() {
                target="dummyframe"
             >
                <div id="HIDE_INPUST">
-                  <input name="entry.521146627" value="Mohammed Ali" />
-                  <input name="entry.1292536241" value="10" />
+                  <input name="entry.521146627" value="Oscar Earle" />
+                  <input name="entry.1292536241" value="8" />
                   <input name="entry.1893167912" value="Morning" />
                   <input name="entry.2062293409" value="2022-01-21" />
                   <input
